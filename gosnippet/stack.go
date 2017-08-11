@@ -14,7 +14,7 @@ type Stack struct {
 	pTop, pBottom *Node
 }
 
-func (pStack *Stack)InitStack() {
+func (pStack *Stack) InitStack() {
 	pNew := new(Node)
 	pNew.pNode = nil
 	pStack.pTop = pNew
@@ -25,7 +25,7 @@ func (pStack *Stack)InitStack() {
 	}
 }
 
-func (pStack *Stack)Push(val interface{}) {
+func (pStack *Stack) Push(val interface{}) {
 	pNew := new(Node)
 	if pNew == nil {
 		fmt.Println("分配头节点内存失败，程序退出")
@@ -37,7 +37,7 @@ func (pStack *Stack)Push(val interface{}) {
 	pStack.pTop = pNew
 }
 
-func (pStack *Stack)Pop() interface{} {
+func (pStack *Stack) Pop() interface{} {
 	if pStack.Empty() {
 		return nil
 	}
@@ -48,11 +48,11 @@ func (pStack *Stack)Pop() interface{} {
 	return reval
 }
 
-func (pStack *Stack)Empty() bool {
+func (pStack *Stack) Empty() bool {
 	return pStack.pTop == pStack.pBottom
 }
 
-func (pStack *Stack)Top() interface{} {
+func (pStack *Stack) Top() interface{} {
 	if pStack.Empty() {
 		return nil
 	}
@@ -60,21 +60,20 @@ func (pStack *Stack)Top() interface{} {
 	return pStack.pTop.val
 }
 
-
-func (pStack *Stack)Size() int {
+func (pStack *Stack) Size() int {
 	var count = 0
 	if pStack.Empty() {
 		return 0
 	}
 
 	for p := pStack.pTop; p != pStack.pBottom; p = p.pNode {
-		count ++
+		count++
 	}
 
 	return count
 }
 
-func (pStack *Stack)Clear() {
+func (pStack *Stack) Clear() {
 	if pStack.Empty() {
 		return
 	}
