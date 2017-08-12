@@ -29,6 +29,9 @@ func main() {
 	// 归并排序
 	fmt.Println(sorts.MergeSort(testSlice))
 
+	// 快速排序
+	fmt.Println(sorts.QuickSort(testSlice, 0, len(testSlice)-1))
+
 	// 切片追加、插入、删除操作
 	fmt.Println(gosnippet.SliceHandle(testSlice, 8, 1))
 }
