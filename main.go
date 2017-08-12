@@ -20,6 +20,15 @@ func main() {
 	// 插入排序
 	fmt.Println(sorts.InsertSort(testSlice))
 
+	// 希尔排序
+	fmt.Println(sorts.ShellSort(testSlice))
+
+	// 梳排序
+	fmt.Println(sorts.CombSort(testSlice))
+
+	// 归并排序
+	fmt.Println(sorts.MergeSort(testSlice))
+
 	// 切片追加、插入、删除操作
 	fmt.Println(gosnippet.SliceHandle(testSlice, 8, 1))
 }
