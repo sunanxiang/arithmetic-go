@@ -5,33 +5,40 @@ import (
 
 	"arithmetic-go/gosnippet"
 	"arithmetic-go/sorts"
+	"arithmetic-go/general"
 )
-
-var testSlice = []int{4, 2, 3, 6, 5, 1, 7}
 
 func main() {
 	// 冒泡排序
-	fmt.Println(sorts.BubbleSortOne(testSlice))
-	fmt.Println(sorts.BubbleSortTwo(testSlice))
+	testBubbleOne := general.RandTestSlice()
+	testBubbleTwo := general.RandTestSlice()
+	fmt.Println(sorts.BubbleSortOne(testBubbleOne))
+	fmt.Println(sorts.BubbleSortTwo(testBubbleTwo))
 
 	// 选择排序
-	fmt.Println(sorts.SelectSort(testSlice))
+	testSelect := general.RandTestSlice()
+	fmt.Println(sorts.SelectSort(testSelect))
 
 	// 插入排序
-	fmt.Println(sorts.InsertSort(testSlice))
+	testInsert := general.RandTestSlice()
+	fmt.Println(sorts.InsertSort(testInsert))
 
 	// 希尔排序
-	fmt.Println(sorts.ShellSort(testSlice))
+	testShell := general.RandTestSlice()
+	fmt.Println(sorts.ShellSort(testShell))
 
 	// 梳排序
-	fmt.Println(sorts.CombSort(testSlice))
+	testComb := general.RandTestSlice()
+	fmt.Println(sorts.CombSort(testComb))
 
 	// 归并排序
-	fmt.Println(sorts.MergeSort(testSlice))
+	testMerge := general.RandTestSlice()
+	fmt.Println(sorts.MergeSort(testMerge))
 
 	// 快速排序
-	fmt.Println(sorts.QuickSort(testSlice, 0, len(testSlice)-1))
+	testQuick := general.RandTestSlice()
+	fmt.Println(sorts.QuickSort(testQuick, 0, len(testQuick)-1))
 
 	// 切片追加、插入、删除操作
-	fmt.Println(gosnippet.SliceHandle(testSlice, 8, 1))
+	fmt.Println(gosnippet.SliceHandle(testQuick, 8, 1))
 }
