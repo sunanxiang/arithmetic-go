@@ -12,4 +12,7 @@ arithmetic for go study
 
 ## 查找算法
 ## Go小知识点
+* [切片操作](./gosnippet/slice.go)
+* [栈实现](./gosnippet/stack.go)
+* [数组去重](./gosnippet/unique.go)
 ## Go面试编程题
