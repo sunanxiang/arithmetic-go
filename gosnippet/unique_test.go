@@ -15,11 +15,12 @@ func TestUniqueSliceString(t *testing.T) {
 		strs = append(strs, "mock")
 	}
 
-	rlt := UniqueSliceString(strs)
-	if len(rlt) != 2 {
+	UniqueSliceString(&strs)
+
+	if len(strs) != 2 {
 		t.Error(errors.New("UniqueSliceString error"))
 	}
-	for index, item := range rlt {
+	for index, item := range strs {
 		if item != except[index] {
 			t.Error(errors.New("UniqueSliceString error"))
 		}
