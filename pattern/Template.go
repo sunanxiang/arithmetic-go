@@ -13,16 +13,15 @@ type Game interface {
 }
 
 type AbsGame struct {
-
 }
 
-func(ag *AbsGame)Start(){
+func (ag *AbsGame) Start() {
 	fmt.Println("start game")
 }
-func(ag *AbsGame)Playing(){
+func (ag *AbsGame) Playing() {
 	fmt.Println("game playing")
 }
-func(ag *AbsGame)End(){
+func (ag *AbsGame) End() {
 	fmt.Println("the end")
 }
 
@@ -30,25 +29,25 @@ type FootBall struct {
 	*AbsGame
 }
 
-func(fb *FootBall)Playing(){
+func (fb *FootBall) Playing() {
 	fmt.Println("playing FootBall")
 }
 
-type Cricket  struct {
+type Cricket struct {
 	*AbsGame
 }
 
-func(fb *Cricket )Playing(){
+func (fb *Cricket) Playing() {
 	fmt.Println("playing Cricket ")
 }
 
-func RunGame(g Game){
+func RunGame(g Game) {
 	g.Start()
 	g.Playing()
 	g.End()
 }
 
-func TemplateTest(){
+func TemplateTest() {
 	RunGame(&FootBall{})
 	RunGame(&Cricket{})
 }

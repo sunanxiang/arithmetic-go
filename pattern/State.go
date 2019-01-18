@@ -9,50 +9,46 @@ import "fmt"
 //   1、可以通过改变状态来获得不同的行为。
 //   2、你的好友能同时看到你的变化
 
-
 // 相关模式：命令模式
 
 // 灯
 type Light struct {
-     State LightState
+	State LightState
 }
 
-func(l *Light)PressSwitch(){
-	if l.State!=nil {
+func (l *Light) PressSwitch() {
+	if l.State != nil {
 		l.State.PressSwitch(l)
 	}
 }
 
 // 灯状态
-type LightState  interface {
+type LightState interface {
 	PressSwitch(light *Light)
 }
 
-
 type OnLightState struct {
-
 }
 
 // 开灯
-func(ols *OnLightState)PressSwitch(light *Light){
+func (ols *OnLightState) PressSwitch(light *Light) {
 	fmt.Println("turn on light")
 	// 下一个状态动作为关灯
-	light.State=&OffLightState{}
+	light.State = &OffLightState{}
 }
 
 type OffLightState struct {
-
 }
 
 // 关灯
-func(ols *OffLightState)PressSwitch(light *Light){
+func (ols *OffLightState) PressSwitch(light *Light) {
 	fmt.Println("turn off light")
 	// 下一个状态动作为开灯
-	light.State=&OnLightState{}
+	light.State = &OnLightState{}
 }
 
-func StateTest(){
-	light:=&Light{State:&OnLightState{}}
+func StateTest() {
+	light := &Light{State: &OnLightState{}}
 	light.PressSwitch()
 	light.PressSwitch()
 	light.PressSwitch()

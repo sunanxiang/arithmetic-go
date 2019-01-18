@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"arithmetic-go/gosnippet"
-	"arithmetic-go/sorts"
-	"arithmetic-go/general"
+	"github.com/sunanxiang/arithmetic-go/general"
+	"github.com/sunanxiang/arithmetic-go/gosnippet"
+	"github.com/sunanxiang/arithmetic-go/sorts"
 )
 
 func main() {

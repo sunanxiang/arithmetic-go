@@ -14,7 +14,7 @@ func CombSort(previous []int) []int {
 		}
 		swapped = false
 
-		for i := 0; i + gap < len(previous); i++ {
+		for i := 0; i+gap < len(previous); i++ {
 			if previous[i] > previous[i+gap] {
 				previous[i+gap], previous[i] = previous[i], previous[i+gap]
 				swapped = true

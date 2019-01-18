@@ -18,12 +18,12 @@ type Strategy interface {
 type AToB struct {
 	// 距离
 	ABDistance float64
-        // 到达方式策略
+	// 到达方式策略
 	Strategy Strategy
 }
 
-func(ab *AToB) Do(){
-	if ab.Strategy!=nil {
+func (ab *AToB) Do() {
+	if ab.Strategy != nil {
 		ab.Strategy.Do(ab)
 	}
 }
@@ -32,48 +32,48 @@ type BikeStrategy struct {
 	Speed float64
 }
 
-func(bs *BikeStrategy) Do(ab interface{}){
-	aTob,ok:=ab.(*AToB)
-	if ok &&bs.Speed<=0.0000001{
+func (bs *BikeStrategy) Do(ab interface{}) {
+	aTob, ok := ab.(*AToB)
+	if ok && bs.Speed <= 0.0000001 {
 		return
 	}
-	fmt.Println("方式：自行车 用时：",aTob.ABDistance/bs.Speed)
+	fmt.Println("方式：自行车 用时：", aTob.ABDistance/bs.Speed)
 }
 
 type BusStrategy struct {
 	Speed float64
 }
 
-func(bs *BusStrategy) Do(ab interface{}){
-	aTob,ok:=ab.(*AToB)
-	if ok &&bs.Speed<=0.0000001{
+func (bs *BusStrategy) Do(ab interface{}) {
+	aTob, ok := ab.(*AToB)
+	if ok && bs.Speed <= 0.0000001 {
 		return
 	}
-	fmt.Println("方式：巴士 用时：",aTob.ABDistance/bs.Speed)
+	fmt.Println("方式：巴士 用时：", aTob.ABDistance/bs.Speed)
 }
 
 type AirStrategy struct {
 	Speed float64
 }
 
-func(as *AirStrategy) Do(ab interface{}){
-	aTob,ok:=ab.(*AToB)
-	if ok &&as.Speed<=0.0000001{
+func (as *AirStrategy) Do(ab interface{}) {
+	aTob, ok := ab.(*AToB)
+	if ok && as.Speed <= 0.0000001 {
 		return
 	}
-	fmt.Println("方式：飞机 用时：",aTob.ABDistance/as.Speed)
+	fmt.Println("方式：飞机 用时：", aTob.ABDistance/as.Speed)
 }
 
-func StrategyTest(){
-        aTob:=&AToB{ABDistance:600}
+func StrategyTest() {
+	aTob := &AToB{ABDistance: 600}
 
-	aTob.Strategy=&BikeStrategy{Speed:15}
+	aTob.Strategy = &BikeStrategy{Speed: 15}
 	aTob.Do()
 
-	aTob.Strategy=&BusStrategy{Speed:90}
+	aTob.Strategy = &BusStrategy{Speed: 90}
 	aTob.Do()
 
-	aTob.Strategy=&AirStrategy{Speed:500}
+	aTob.Strategy = &AirStrategy{Speed: 500}
 	aTob.Do()
 
 }

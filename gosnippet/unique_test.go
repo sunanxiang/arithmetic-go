@@ -1,8 +1,8 @@
 package gosnippet
 
 import (
-	"testing"
 	"errors"
+	"testing"
 )
 
 func TestUniqueSliceString(t *testing.T) {

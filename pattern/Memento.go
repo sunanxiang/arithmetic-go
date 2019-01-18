@@ -33,7 +33,7 @@ func (t *Text) SaveToMemento() *Memento {
 
 // 从备忘恢复
 func (t *Text) RestoreFromMemento(m *Memento) {
-	if m!=nil {
+	if m != nil {
 		t.Value = m.Value
 	}
 	return
@@ -51,18 +51,17 @@ type Storage struct {
 
 // Back returns the last element of list l or nil.
 // and remove form list
-func (s *Storage)RPop()*list.Element{
-	ele:=s.Back()
-	if ele!=nil{
+func (s *Storage) RPop() *list.Element {
+	ele := s.Back()
+	if ele != nil {
 		s.Remove(ele)
 	}
 	return ele
 }
 
-
-func MementoTest(){
-        storage:=&Storage{list.New()}
-	text:=&Text{"hello world"}
+func MementoTest() {
+	storage := &Storage{list.New()}
+	text := &Text{"hello world"}
 	fmt.Println(text.Read())
 	storage.PushBack(text.SaveToMemento())
 	text.Write("nihao")
@@ -72,22 +71,22 @@ func MementoTest(){
 	fmt.Println(text.Read())
 
 	//后退回滚
-	mediator:=storage.RPop()
-	if mediator!=nil {
+	mediator := storage.RPop()
+	if mediator != nil {
 		text.RestoreFromMemento(mediator.Value.(*Memento))
 	}
 	fmt.Println(text.Read())
 
 	//后退回滚
-	mediator=storage.RPop()
-	if mediator!=nil {
+	mediator = storage.RPop()
+	if mediator != nil {
 		text.RestoreFromMemento(mediator.Value.(*Memento))
 	}
 	fmt.Println(text.Read())
 
 	//后退 已没有
-	mediator=storage.RPop()
-	if mediator!=nil {
+	mediator = storage.RPop()
+	if mediator != nil {
 		text.RestoreFromMemento(mediator.Value.(*Memento))
 	}
 	fmt.Println(text.Read())

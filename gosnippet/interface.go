@@ -7,7 +7,7 @@ import (
 
 // introduce how to judge a interface is nil
 type TestInterface interface {
-	TestFunc ()
+	TestFunc()
 }
 
 type TestObject struct {
@@ -18,7 +18,7 @@ func (t *TestObject) TestFunc() {
 	fmt.Println(t.Name)
 }
 
-func TestMain()  {
+func TestMain() {
 	// 1、
 	var a TestInterface
 	fmt.Println(a == nil) // true
@@ -31,29 +31,29 @@ func TestMain()  {
 
 	// 3、
 	var b *TestObject
-	fmt.Println(b == nil) // true
+	fmt.Println(b == nil)                   // true
 	fmt.Println(reflect.ValueOf(b).IsNil()) // true
 
 	var bb TestInterface = new(TestObject)
-	fmt.Println(bb == nil) // false
+	fmt.Println(bb == nil)                   // false
 	fmt.Println(reflect.ValueOf(bb).IsNil()) // false
 
 	var bbb TestInterface = &TestObject{}
-	fmt.Println(bbb == nil) // false
+	fmt.Println(bbb == nil)                   // false
 	fmt.Println(reflect.ValueOf(bbb).IsNil()) // false
 
 	var bbbb = new(TestObject)
-	fmt.Println(bbbb == nil) // false
+	fmt.Println(bbbb == nil)                   // false
 	fmt.Println(reflect.ValueOf(bbbb).IsNil()) // false
 
 	var bbbbb = &TestObject{}
-	fmt.Println(bbbbb == nil) // false
+	fmt.Println(bbbbb == nil)                   // false
 	fmt.Println(reflect.ValueOf(bbbbb).IsNil()) // false
 
 	// 4、
 	var c *TestObject = nil
 	var cc TestInterface = c
-	fmt.Println(cc == nil) // false
+	fmt.Println(cc == nil)                   // false
 	fmt.Println(reflect.ValueOf(cc).IsNil()) //true
 
 	// 5、

@@ -17,15 +17,15 @@ type Subject struct {
 	state     string
 }
 
-func (s *Subject)SetState(state string) {
+func (s *Subject) SetState(state string) {
 	s.state = state
 	s.NotifyAllObservers()
 }
-func (s *Subject)Attach(observer ... Observer) {
-	s.observers = append(s.observers, observer ...)
+func (s *Subject) Attach(observer ...Observer) {
+	s.observers = append(s.observers, observer...)
 }
 
-func (s *Subject)NotifyAllObservers() {
+func (s *Subject) NotifyAllObservers() {
 	for _, obs := range s.observers {
 		obs.Notify(s)
 	}
@@ -35,15 +35,15 @@ type AObserver struct {
 	Id string
 }
 
-func (ao *AObserver)Notify(sub interface{}) {
-	fmt.Println(ao.Id , " receive ", sub.(*Subject).state)
+func (ao *AObserver) Notify(sub interface{}) {
+	fmt.Println(ao.Id, " receive ", sub.(*Subject).state)
 }
 
 func ObserverTest() {
 	sub := &Subject{}
-	a := &AObserver{Id:"A"}
-	b := &AObserver{Id:"b"}
-	sub.Attach(a,b)
+	a := &AObserver{Id: "A"}
+	b := &AObserver{Id: "b"}
+	sub.Attach(a, b)
 	sub.SetState("hello world")
 	sub.SetState("i know")
 

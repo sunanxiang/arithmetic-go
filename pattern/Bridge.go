@@ -22,7 +22,7 @@ type Client struct {
 }
 
 func (c *Client) Query(req Request) (resp *http.Response, err error) {
-	httpreq,_:=req.HttpRequest()
+	httpreq, _ := req.HttpRequest()
 	resp, err = c.Client.Do(httpreq)
 	return
 }
@@ -30,7 +30,7 @@ func (c *Client) Query(req Request) (resp *http.Response, err error) {
 type CdnRequest struct {
 }
 
-func (cdn *CdnRequest) HttpRequest() (*http.Request,  error) {
+func (cdn *CdnRequest) HttpRequest() (*http.Request, error) {
 	return http.NewRequest("GET", "/cdn", nil)
 }
 

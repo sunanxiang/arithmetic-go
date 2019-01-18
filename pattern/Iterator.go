@@ -24,7 +24,7 @@ type ArrayIterator struct {
 }
 
 func (ai *ArrayIterator) HasNext() bool {
-	if ai.ac.arrayData!=nil&&ai.currentIndex < len(ai.ac.arrayData) {
+	if ai.ac.arrayData != nil && ai.currentIndex < len(ai.ac.arrayData) {
 		return true
 	}
 	return false
@@ -48,12 +48,11 @@ func (ac *ArrayContainer) GetIterator() Iterator {
 	return &ArrayIterator{currentIndex: 0, ac: ac}
 }
 
-
-func IteratorTest(){
-	arr:=[]interface{}{"a","b","c","d"}
-	arrayContainer:=&ArrayContainer{arrayData:arr}
-	iterator:=arrayContainer.GetIterator()
-	for iterator.HasNext(){
+func IteratorTest() {
+	arr := []interface{}{"a", "b", "c", "d"}
+	arrayContainer := &ArrayContainer{arrayData: arr}
+	iterator := arrayContainer.GetIterator()
+	for iterator.HasNext() {
 		fmt.Println(iterator.Next().(string))
 	}
 }

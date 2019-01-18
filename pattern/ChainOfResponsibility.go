@@ -8,14 +8,13 @@ import "fmt"
 //
 //    github.com/BPing/Golib/middleware 包就是基于此模式实现的
 
-
 type ScreenEvent struct {
-	Type string
+	Type    string
 	Comment string
 }
 
-type IScreenEventHandler interface{
-	Handle(*ScreenEvent)bool
+type IScreenEventHandler interface {
+	Handle(*ScreenEvent) bool
 	SetNextHandler(IScreenEventHandler)
 }
 
@@ -23,59 +22,59 @@ type AbsScreenEventHandler struct {
 	NextHandler IScreenEventHandler
 }
 
-func(ase *AbsScreenEventHandler)Handle(se *ScreenEvent)bool{
-	if ase.NextHandler!=nil {
+func (ase *AbsScreenEventHandler) Handle(se *ScreenEvent) bool {
+	if ase.NextHandler != nil {
 		return ase.NextHandler.Handle(se)
 	}
 	return false
 }
 
-func(ase *AbsScreenEventHandler)SetNextHandler(ise IScreenEventHandler){
-	ase.NextHandler=ise
+func (ase *AbsScreenEventHandler) SetNextHandler(ise IScreenEventHandler) {
+	ase.NextHandler = ise
 }
 
-type HomeScreenEventHandler  struct {
+type HomeScreenEventHandler struct {
 	AbsScreenEventHandler
 }
 
-func(hse *HomeScreenEventHandler)Handle(se *ScreenEvent)bool{
+func (hse *HomeScreenEventHandler) Handle(se *ScreenEvent) bool {
 	fmt.Println("HomeScreenEventHandler.....")
-	if se.Type=="HomeClick" {
+	if se.Type == "HomeClick" {
 		fmt.Println("HomeClick")
 		return true
 	}
 	return hse.AbsScreenEventHandler.Handle(se)
 }
 
-type UserScreenEventHandler  struct {
+type UserScreenEventHandler struct {
 	AbsScreenEventHandler
 }
 
-func(use *UserScreenEventHandler)Handle(se *ScreenEvent)bool{
+func (use *UserScreenEventHandler) Handle(se *ScreenEvent) bool {
 	fmt.Println("UserScreenEventHandler.....")
-	if se.Type=="UserModelClick" {
+	if se.Type == "UserModelClick" {
 		fmt.Println("UserModelClick")
 		return true
 	}
 	return use.AbsScreenEventHandler.Handle(se)
 }
 
-func ChainOfResponsibilityTest(){
-	  var osd IScreenEventHandler
-	   osd=&AbsScreenEventHandler{}
-	   home:=&HomeScreenEventHandler{}
-	   user:=&UserScreenEventHandler{}
-	   home.SetNextHandler(user)
-	   osd.SetNextHandler(home)
+func ChainOfResponsibilityTest() {
+	var osd IScreenEventHandler
+	osd = &AbsScreenEventHandler{}
+	home := &HomeScreenEventHandler{}
+	user := &UserScreenEventHandler{}
+	home.SetNextHandler(user)
+	osd.SetNextHandler(home)
 
-	screenEvent:=&ScreenEvent{Type:"HomeClick"}
+	screenEvent := &ScreenEvent{Type: "HomeClick"}
 	osd.Handle(screenEvent)
 
 	fmt.Println("-----------------------------------------------\n")
-	screenEvent=&ScreenEvent{Type:"UserModelClick"}
+	screenEvent = &ScreenEvent{Type: "UserModelClick"}
 	osd.Handle(screenEvent)
 
 	fmt.Println("-----------------------------------------------\n")
-	screenEvent=&ScreenEvent{Type:"Null"}
+	screenEvent = &ScreenEvent{Type: "Null"}
 	osd.Handle(screenEvent)
 }

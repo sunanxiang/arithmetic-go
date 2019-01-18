@@ -15,42 +15,40 @@ type DbConnectPool struct {
 	ConnChan chan *DbConnect
 }
 
-func NewDbConnectPool(chanLen int)*DbConnectPool{
-	return &DbConnectPool{ConnChan:make(chan *DbConnect,chanLen)}
+func NewDbConnectPool(chanLen int) *DbConnectPool {
+	return &DbConnectPool{ConnChan: make(chan *DbConnect, chanLen)}
 }
 
-func(dc *DbConnectPool) Get()*DbConnect{
+func (dc *DbConnectPool) Get() *DbConnect {
 	select {
 	case conn := <-dc.ConnChan:
 		return conn
 	default:
-	        // 无则新建
+		// 无则新建
 		return new(DbConnect)
 	}
 }
-func(dc *DbConnectPool) Put(conn *DbConnect){
+func (dc *DbConnectPool) Put(conn *DbConnect) {
 	select {
 	case dc.ConnChan <- conn:
 		return
 	default:
-	       // 满则丢弃
+		// 满则丢弃
 		return
 	}
 }
 
 // 数据库连接
 type DbConnect struct {
-
 }
 
-func (*DbConnect) Do(){
+func (*DbConnect) Do() {
 	fmt.Println("connect......doing....")
 }
 
-
-func FlyweightTest(){
-	pool:=NewDbConnectPool(2)
-	conn:=pool.Get()
+func FlyweightTest() {
+	pool := NewDbConnectPool(2)
+	conn := pool.Get()
 	conn.Do()
 	pool.Put(conn)
 }
