@@ -54,7 +54,7 @@ func TestMain() {
 	var c *TestObject = nil
 	var cc TestInterface = c
 	fmt.Println(cc == nil)                   // false
-	fmt.Println(reflect.ValueOf(cc).IsNil()) //true
+	fmt.Println(reflect.ValueOf(cc).IsNil()) // true
 
 	// 5、
 	var d interface{}
