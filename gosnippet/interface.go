@@ -18,6 +18,14 @@ func (t *TestObject) TestFunc() {
 	fmt.Println(t.Name)
 }
 
+func get() TestInterface {
+	return nil
+}
+
+func getObject() TestInterface {
+	return &TestObject{}
+}
+
 func TestMain() {
 	// 1、
 	var a TestInterface
@@ -60,6 +68,12 @@ func TestMain() {
 	var d interface{}
 	fmt.Println(d == nil) // true
 	// fmt.Println(reflect.ValueOf(d).IsNil()) // panic
+
+	dd := get()
+	fmt.Println(dd == nil) // true
+
+	ddd := getObject()
+	fmt.Println(ddd == nil) // false
 
 	//conclusion:
 	// 1、if a interface which including methods is direct nil, interface == nil is true.
