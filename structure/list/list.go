@@ -44,6 +44,15 @@ func ReverseSinglyLinkedListRecursive(root *SinglyNode) *SinglyNode {
 	return reverse
 }
 
+// reverse singly linked list use easy way that in go.
+func ReverseSinglyLinkedListSimple(root *SinglyNode) *SinglyNode {
+	var tail *SinglyNode
+	for root != nil {
+		root.Next, tail, root = tail, root, root.Next
+	}
+	return tail
+}
+
 // todo:
 // reverse two-way linked list
 func ReverseTwoWayLinkedList(root *TwoWayNode) *TwoWayNode {
